@@ -1,0 +1,47 @@
+﻿@page
+@model             IndexModel
+@{
+}
+
+<h1>Pets</h1>
+
+<form method="get">
+    <div class="input-group">
+        <input type="search" class="form-control"
+          asp-for="Search" />
+        <button class="btn btn-dark">Search...</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Breed</th>
+            <th scope="col">Species</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Pets)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Breed.Name</td>
+                <td>@item.Breed.Species.Name</td>
+                <td><a class="btn btn-link"
+                    asp-page="Details"
+                    asp-route-id="@item.Id">View...</a></td>
+                <td>
+                    <a class="btn btn-link"
+                   asp-page="Edit"
+                   asp-route-id="@item.Id">Edit...</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<a asp-page="Create" class="btn btn-dark">Create</a>

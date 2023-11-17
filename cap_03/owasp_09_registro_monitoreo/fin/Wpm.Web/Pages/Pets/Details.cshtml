@@ -1,0 +1,28 @@
+﻿@page
+@model             DetailsModel
+@{
+}
+
+<div class="card" style="width: 16rem;">
+    <img class="card-img-top" src="@Model.Pet?.PhotoUrl" />
+    
+    <div class="card-body">
+        <h3 class="card-title">@($"{Model.Pet?.Name} ({@Model.Pet?.Breed?.Species?.Name})")</h3>
+        <p>
+            @Model.Pet?.Name is a <b>@Model.Pet?.Age</b>-year-old
+            @Model.Pet?.Breed.Name
+            that weights <b>@Model.Pet?.Weight</b> kilograms.
+        </p>
+        
+        <p>Its registered owners are:</p>
+
+        <ul>
+            @foreach (var item in Model.Pet?.Owners)
+            {
+                <li>@item.Name</li>
+            }
+        </ul>
+
+        <a asp-page="Index" class="btn btn-primary">Return</a>
+    </div>
+</div>
